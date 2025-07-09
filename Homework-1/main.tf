@@ -19,14 +19,12 @@ resource "aws_iam_user" "mina" {
 }
 
 # add the users to each group
-resource "aws_iam_group_membership" "miyeon" {
-  name  = "blackpink"
-  group = aws_iam_group.blackpink.name
-  users = [aws_iam_user.miyeon.name]
+resource "aws_iam_user_group_membership" "miyeon" {
+  user   = aws_iam_user.miyeon.name
+  groups = [aws_iam_group.blackpink.name]
 }
 
-resource "aws_iam_group_membership" "mina" {
-  name  = "twice"
-  group = aws_iam_group.twice.name
-  users = [aws_iam_user.mina.name]
+resource "aws_iam_user_group_membership" "mina" {
+  user   = aws_iam_user.mina.name
+  groups = [aws_iam_group.twice.name]
 }

@@ -35,14 +35,14 @@ resource "aws_iam_group" "twice" {
 }
 
 # Add the users to each group
-resource "aws_iam_group_membership" "blackpink" {
-  name  = "blackpink-group"
-  group = aws_iam_group.blackpink.name
-  users = local.blackpink_users
+resource "aws_iam_user_group_membership" "blackpink" {
+  for_each = toset(local.blackpink_users)
+  groups   = [aws_iam_group.blackpink.name]
+  user     = aws_iam_user.blackpink[each.key].name
 }
 
-resource "aws_iam_group_membership" "twice" {
-  name  = "twice-group"
-  group = aws_iam_group.twice.name
-  users = local.twice_users
+resource "aws_iam_user_group_membership" "twice" {
+  for_each = toset(local.twice_users)
+  groups   = [aws_iam_group.twice.name]
+  user     = aws_iam_user.twwice[each.key].name
 }
