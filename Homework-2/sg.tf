@@ -1,38 +1,24 @@
+# Create locals variable for the ports to be opened
+locals {
+  ports = [22, 80, 443, 3306] # SSH, HTTP, HTTPS, MySQL
+}
+
 # Create a security group for the EC2 instance
 resource "aws_security_group" "allow-hw2-sg" {
   name        = "allow-hw2-sg"
-  description = "Allow Homework 2 Security Group"
-  vpc_id      = "vpc-06a58793a3a60518c"
+  description = "Homework 2 Security Group"
+  vpc_id      = data.aws_vpc.default.id
 
-  # Allow SSH access from anywhere  
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 
-  # Allow HTTP access from anywhere  
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  # Allow HTTPS access from anywhere
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  # Allow MySQL access from anywhere
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  # Use dynamic blocks to allow inbound traffic for the specified ports 
+  dynamic "ingress" {
+    for_each = local.ports
+    content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
   }
 
   # Allow all outbound traffic
