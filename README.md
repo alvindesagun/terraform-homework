@@ -1,6 +1,6 @@
-# terraform-homework
+# terraform.tfvars file
 
-# terraform.tfvars
+Specifies values for variables in variables.tf file
 
 # specs for region
 region = "us-west-2"
