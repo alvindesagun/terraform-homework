@@ -20,6 +20,7 @@ data "aws_ami" "al2" {
 }
 
 data "aws_subnet" "az" {
+  depends_on = [ aws_subnet.public_subnet, aws_subnet.private_subnet ]
   availability_zone = var.instance.availability_zone
   vpc_id            = aws_vpc.vpc.id
 }

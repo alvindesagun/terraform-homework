@@ -1,6 +1,6 @@
 # create EC2 
 resource "aws_instance" "instance" {
-  depends_on             = [aws_key_pair.bastion_key, data.aws_subnet.az]
+  depends_on             = [aws_key_pair.bastion_key]
   count                  = var.instance.count
   subnet_id              = data.aws_subnet.az.id
   instance_type          = var.instance.instance_type == "t3" ? "t3.micro" : "t2.micro"
