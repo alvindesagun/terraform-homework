@@ -18,3 +18,8 @@ data "aws_ami" "al2" {
     values = ["al2023-ami-2023.8.20250707.0-kernel-6.1-x86_64"]
   }
 }
+
+data "aws_subnet" "az" {
+  availability_zone = var.instance.availability_zone
+  vpc_id            = aws_vpc.vpc.id
+}

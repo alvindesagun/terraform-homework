@@ -13,6 +13,6 @@ resource "aws_eip" "nat_gw" {
 resource "aws_nat_gateway" "nat_gw" {
   depends_on    = [aws_internet_gateway.gw]
   allocation_id = aws_eip.nat_gw.id
-  subnet_id = [for s in aws_subnet.public_subnet : s.id][length(aws_subnet.public_subnet) - 1]
-  tags      = local.common_tags
+  subnet_id     = [for s in aws_subnet.public_subnet : s.id][length(aws_subnet.public_subnet) - 1] # attach to last public subnet
+  tags          = local.common_tags
 }

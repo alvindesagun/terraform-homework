@@ -63,10 +63,12 @@ variable "key_name" {
 # variables for EC2
 variable "instance" {
   type = object({
-    count         = number
-    user_data     = string
-    ami           = string
-    instance_type = string
+    count             = number
+    hostname          = string
+    user_data         = string
+    ami               = string
+    instance_type     = string
+    availability_zone = string
     }
   )
   description = "Provide EC2 details in tfvars"
