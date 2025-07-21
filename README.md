@@ -5,6 +5,7 @@ Specifies values for variables in variables.tf file
 <hcl >
 # specs for region
 region = "us-west-2"
+</hcl>
 
 <hcl >
 # specs for vpc values
