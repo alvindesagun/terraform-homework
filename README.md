@@ -2,6 +2,7 @@
 
 Specifies values for variables in variables.tf file
 
+<hcl >
 # specs for region
 region = "us-west-2"
 
@@ -55,3 +56,4 @@ instance = {
   availability_zone = "us-west-2c" # specify the availability zone
   user_data         = null
 }
+</hcl>
