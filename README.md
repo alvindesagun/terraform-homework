@@ -2,12 +2,10 @@
 
 Specifies values for variables in variables.tf file
 
-<hcl >
+'''
 # specs for region
 region = "us-west-2"
-</hcl>
 
-<hcl >
 # specs for vpc values
 vpc = {
   cidr_block           = "10.0.0.0/16"
@@ -15,13 +13,12 @@ vpc = {
   enable_dns_hostnames = true
 }
 
-<hcl >
 # specs for private AZ
 pri_availability_zones = {
   availability_zone       = ["us-west-2a", "us-west-2b"]
   map_public_ip_on_launch = false
 }
-<hcl >
+
 # specs for private  subnet
 pri_subnet_cidrs = {
   us-west-2a = "10.0.1.0/24"
@@ -59,4 +56,4 @@ instance = {
   availability_zone = "us-west-2c" # specify the availability zone
   user_data         = null
 }
-</hcl>
+'''
