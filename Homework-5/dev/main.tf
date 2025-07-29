@@ -83,7 +83,8 @@ module "ec2" {
     instance_type          = "t2"                 # use t3 for ubuntu and t2 for amazon ami 
     ami                    = "al2"                # use ubuntu for ubuntu and al2 for amazon ami
     vpc_security_group_ids = module.vpc.sg_id     # fetch from SG id from VPC module
+    vpc_id                 = module.vpc.vpc_id    # fetch from VPC module
     user_data              = null
-    vpc_id                 = module.vpc.vpc_id # fetch from VPC module
+
   }
 }
